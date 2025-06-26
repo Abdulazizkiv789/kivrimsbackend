@@ -103,6 +103,15 @@ app.post('/api/stk-push', async (req, res) => {
   }
 });
 
+// M-Pesa Callback Handler
+app.post('/api/mpesa-callback', (req, res) => {
+  console.log('📲 M-Pesa Callback received:', req.body);
+
+  // You can save callback data here if needed
+
+  res.status(200).json({ message: '✅ Callback received' });
+});
+
 // Contact Message Schema and Model
 const contactMessageSchema = new mongoose.Schema({
   name: { type: String, required: true },
