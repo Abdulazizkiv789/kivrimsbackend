@@ -1,0 +1,40 @@
+# Node modules (huge folder, not needed in version control)
+node_modules/
+
+# Environment variable files (keep secrets out of git)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+
+# Coverage reports
+coverage/
+
+# Optional: ignore IDE settings
+.vscode/
+.idea/
+*.suo
+.ntvs
+*.njsproj
+*.sln
+
+# Optional: ignore temporary files
+tmp/
+temp/
+*.tmp
