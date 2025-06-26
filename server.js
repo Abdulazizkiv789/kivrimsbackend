@@ -51,6 +51,20 @@ const getAccessToken = async () => {
   }
 };
 
+const formatPhoneNumber = (phone) => {
+  let formatted = phone.trim();
+
+  if (formatted.startsWith('+')) {
+    formatted = formatted.slice(1); // Remove '+'
+  }
+
+  if (formatted.startsWith('07') || formatted.startsWith('01')) {
+    formatted = '254' + formatted.slice(1);
+  }
+
+  return formatted;
+};
+
 // M-Pesa STK Push Endpoint
 app.post('/api/stk-push', async (req, res) => {
   const { amount, phone } = req.body;
@@ -59,24 +73,7 @@ app.post('/api/stk-push', async (req, res) => {
     return res.status(400).json({ message: 'Amount and phone number are required.' });
   }
 
-  const formatPhoneNumber = (phone) => {
-  let formatted = phone.trim();
-
-  // Remove "+" if user enters +254...
-  if (formatted.startsWith('+')) {
-    formatted = formatted.slice(1);
-  }
-
-  // Convert '07...' and '01...' to '2547...' and '2541...'
-  if (formatted.startsWith('07') || formatted.startsWith('01')) {
-    formatted = '254' + formatted.slice(1);
-  }
-
-  return formatted;
-};
-
-const formattedPhone = formatPhoneNumber(phone);
-
+  const formattedPhone = formatPhoneNumber(phone);
   try {
     const accessToken = await getAccessToken();
     const timestamp = moment().format('YYYYMMDDHHmmss');
