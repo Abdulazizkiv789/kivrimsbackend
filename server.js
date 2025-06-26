@@ -125,7 +125,7 @@ const ContactMessage = mongoose.model('ContactMessage', contactMessageSchema);
 
 // Routes
 app.get('/', (req, res) => {
-  res.status(200).json({ message: '✅ KivRims Backend API is running!' });
+    res.send("✅ KivRims Backend API is running!");
 });
 
 app.post('/api/contact', async (req, res) => {
